@@ -1,6 +1,6 @@
 {
-  "short_name": "Hello World",
-  "name": "Hello World",
+  "short_name": "LambdaHandson",
+  "name": "LambdaHandson",
   "icons": [
     {
       "src": "icon.png",
@@ -10,6 +10,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#3eaf7c",
+  "theme_color": "#D16413",
   "background_color": "#ffffff"
 }
