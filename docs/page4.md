@@ -1,4 +1,4 @@
-# 4章 API Gateway
+# 4章 DynamoDB
 
 ## Topic1
 
