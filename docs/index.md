@@ -1,3 +1,3 @@
-# Index
+# Lambdaハンズオン
 
-![logo](/images/logo.png)
+

@@ -1,4 +1,4 @@
-# Page2
+# 2章 Lambda
 
 ## Topic1
 
