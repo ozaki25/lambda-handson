@@ -71,7 +71,13 @@ sls config credentials --provider aws --key AWS_ACCESS_KEY_ID --secret AWS_SECRE
 ```
 
 - すでに登録済みの場合エラーが出ます
-- その場合は`~/.aws/credentials`のファイルを直接編集し`[default]`の部分を別の値に変えるなどして対応してください
+- その場合は`~/.aws/credentials`のファイルを直接編集し`[default]`の部分を別の値に変えるなどしてから再実行してください
+
+```config
+[my-account]
+aws_access_key_id=XXXXXXXXXXXXXXXXXXXX
+aws_secret_access_key=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+```
 
 :::danger
 キー情報の取り扱いには注意してください
