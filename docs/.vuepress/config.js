@@ -1,10 +1,10 @@
 const dayjs = require('dayjs');
 
 module.exports = {
-  title: 'HelloWorld',
+  title: 'Lambda Handson',
   themeConfig: {
-    domain: 'https://xxx.ozaki25.vercel.app',
-    repo: 'ozaki25/vuepress_template',
+    domain: 'https://lambda-handson.ozaki25.vercel.app',
+    repo: 'ozaki25/lambda-handson',
     repoLabel: 'GitHub',
     sidebar: [
       {
