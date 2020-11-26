@@ -1,0 +1,17 @@
+{
+  "name": "vupress_template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "vuepress dev docs",
+    "build": "vuepress build docs --dest public"
+  },
+  "dependencies": {
+    "@vuepress/plugin-back-to-top": "^1.7.1",
+    "@vuepress/plugin-medium-zoom": "^1.7.1",
+    "@vuepress/plugin-pwa": "^1.7.1",
+    "dayjs": "^1.9.6",
+    "vuepress": "^1.7.1",
+    "vuepress-plugin-seo": "^0.1.4"
+  }
+}
