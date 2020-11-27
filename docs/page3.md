@@ -279,7 +279,7 @@ curl -X GET https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/dev/hell
 {"message":"Your ID is 1234"}
 ```
 
-## クエリパラメータの設定
+### クエリパラメータの設定
 
 - 続いて`/users?name=ozaki25`といった形式でURLにアクセスしLambda関数の中で`ozaki25`の部分を取得して処理を実行します
 - handler.tsに新しい関数を作成しましょう
