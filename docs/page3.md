@@ -245,7 +245,7 @@ sls deploy
 
 - 出力結果を確認するとURLが追加されているはずです
 
-```
+```{13}
 Serverless: Stack update finished...
 Service Information
 service: lambda-handson-ozaki25
@@ -347,7 +347,7 @@ sls deploy
 
 - 出力結果を確認するとURLが追加されているはずです
 
-```
+```{14}
 Serverless: Stack update finished...
 Service Information
 service: lambda-handson-ozaki25
