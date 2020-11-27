@@ -4,6 +4,7 @@
 
 - Lambda関数を新規に作成してAWSにデプロイし実行してみます
 - ServerlessFrameworkを用いてAWSのWebコンソールをいじることなくコードベースで作成していきます
+
 ## ゴール
 
 - ServerlessFrameworkを使ってプロジェクトを作成できるようになる
