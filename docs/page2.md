@@ -325,4 +325,67 @@ sls invoke -f helloworld
 }
 ```
 
+## (参考)ログの確認
+
+- (AWSのWebコンソールアクセスできる人向け)
+- CloudWatchLogsというサービスを通してログを確認することができます
+- handler.tsを修正してログを出力するようにしてみます
+    - 20行目を追加しています
+
+```ts{20}
+import { APIGatewayProxyHandler } from 'aws-lambda';
+import 'source-map-support/register';
+
+export const hello: APIGatewayProxyHandler = async (event, _context) => {
+  return {
+    statusCode: 200,
+    body: JSON.stringify(
+      {
+        message:
+          'Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!',
+        input: event,
+      },
+      null,
+      2,
+    ),
+  };
+};
+
+export const helloworld: APIGatewayProxyHandler = async () => {
+  console.log('Hello Lambda');
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: 'Hello Lambda!' }),
+  };
+};
+```
+
+- 修正したらデプロイしましょう
+
+```sh
+sls deploy
+```
+
+- ログを出すために関数を実行しておきます
+
+```sh
+sls invoke -f helloworld
+```
+
+- 準備は整ったのでAWSのWebコンソールにログインしCloudWatchLogsにアクセスしてみましょう
+
+![cloud watch](/images/2-1.png)
+![cloud watch](/images/2-2.png)
+
+- 自身の関数名を探してhelloworldの方を開いてみましょう
+
+![cloud watch](/images/2-3.png)
+
+- 最新のアクセスを開いてみましょう
+
+![cloud watch](/images/2-4.png)
+
+- console.logの出力を確認できるはずです
+
+![cloud watch](/images/2-5.png)
 
