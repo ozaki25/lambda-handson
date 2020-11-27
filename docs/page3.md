@@ -170,7 +170,215 @@ curl -X GET https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/dev/hell
 ```
 
 :::tip
+- デプロイ時の出力を消してしまった場合は`sls info`を実行するとURLなどを確認することができます
+:::
+
+:::tip
 - curlコマンドの代わりにREST Clientサービスを使うと可視性もよく非常に使い勝手が良いです
 - [Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo/details?hl=ja-JP)や[Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=ja-jp)などがあります
 :::
 
+## (応用)API GatewayのURL設定
+
+- 上の作業では特定のURLにアクセスすれば必ず同じ処理が実行されるパターンでした
+- 実際にアプリケーション開発をしていると`/users/1`などURLに値を埋め込みそれを元に処理をするケースがあります
+- URLに値を埋め込むパターンを紹介します
+
+### パスパラメータの設定
+
+- `/users/1`といった形式でURLにアクセスしLambda関数の中で`1`の部分を取得して処理を実行します
+- handler.tsに新しい関数を作成しましょう
+    - 一番下に以下のコードを追加してください
+
+```ts
+// 省略
+export const helloPathParameter: APIGatewayProxyHandler = async event => {
+  // パスパラメータのidを取得
+  const id = event.pathParameters.id;
+  console.log(`Your ID is ${id}`);
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: `Your ID is ${id}` }),
+  };
+};
+```
+
+- 関数を作成したのでserverless.tsにも修正を加えます
+
+```ts{11-21}
+import type { AWS } from '@serverless/typescript';
+
+const serverlessConfiguration: AWS = {
+  // ...
+  // 省略
+  // ...
+  functions: {
+  // ...
+  // 省略
+  // ...
+    helloPathParameter: {
+      handler: 'handler.helloPathParameter',
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'helloparams/{id}',
+          },
+        },
+      ],
+    },
+  },
+};
+
+module.exports = serverlessConfiguration;
+```
+
+- 一番下の方に設定を追加しました
+    - pathの部分が`helloparams/{id}`となっているのがポイントです
+        - 場合によっては`blogs/{blodId}/comments/{commentId}`のように複数設定することも可能です
+- 修正したらデプロイしましょう
+
+```sh
+sls deploy
+```
+
+- 出力結果を確認するとURLが追加されているはずです
+
+```
+Serverless: Stack update finished...
+Service Information
+service: lambda-handson-ozaki25
+stage: dev
+region: ap-northeast-1
+stack: lambda-handson-ozaki25-dev
+resources: 23
+api keys:
+  None
+endpoints:
+  GET - https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/dev/hello
+  GET - https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/dev/helloworld
+  GET - https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/dev/helloparams/{id}
+functions:
+  hello: lambda-handson-ozaki25-dev-hello
+  helloworld: lambda-handson-ozaki25-dev-helloworld
+  helloPathParameter: lambda-handson-ozaki25-dev-helloPathParameter
+layers:
+  None
+```
+
+- curlやREST Clientでアクセスしてみましょう
+
+```sh
+curl -X GET https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/dev/helloparams/1234
+```
+
+- うまくいけば以下のような出力を得られるはずです
+
+```json
+{"message":"Your ID is 1234"}
+```
+
+## クエリパラメータの設定
+
+- 続いて`/users?name=ozaki25`といった形式でURLにアクセスしLambda関数の中で`ozaki25`の部分を取得して処理を実行します
+- handler.tsに新しい関数を作成しましょう
+    - 一番下に以下のコードを追加してください
+
+```ts
+// 省略
+export const helloQueryParameter: APIGatewayProxyHandler = async event => {
+  // クエリストリングからnameの値を取得
+  const name = event.queryStringParameters.name;
+  console.log(`Your Name is ${name}`);
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: `Your Name is ${name}` }),
+  };
+};
+```
+
+- 関数を作成したのでserverless.tsにも修正を加えます
+
+```ts{11-29}
+import type { AWS } from '@serverless/typescript';
+
+const serverlessConfiguration: AWS = {
+  // ...
+  // 省略
+  // ...
+  functions: {
+  // ...
+  // 省略
+  // ...
+    helloQueryParameter: {
+      handler: 'handler.helloQueryParameter',
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'helloparams',
+            request: {
+              parameters: {
+                querystrings: {
+                  name: true,
+                },
+              },
+            },
+          },
+        },
+      ],
+    },
+  },
+};
+
+module.exports = serverlessConfiguration;
+```
+
+- 一番下の方に設定を追加しました
+    - `request/parameters/querystrings`の部分の追加されました
+    - `name: true`はクエリとしてnameが必須項目であることを意味しています
+- 修正したらデプロイしましょう
+
+```sh
+sls deploy
+```
+
+- 出力結果を確認するとURLが追加されているはずです
+
+```
+Serverless: Stack update finished...
+Service Information
+service: lambda-handson-ozaki25
+stage: dev
+region: ap-northeast-1
+stack: lambda-handson-ozaki25-dev
+resources: 27
+api keys:
+  None
+endpoints:
+  GET - https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/dev/hello
+  GET - https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/dev/helloworld
+  GET - https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/dev/helloparams/{id}
+  GET - https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/dev/helloparams
+functions:
+  hello: lambda-handson-ozaki25-dev-hello
+  helloworld: lambda-handson-ozaki25-dev-helloworld
+  helloPathParameter: lambda-handson-ozaki25-dev-helloPathParameter
+  helloQueryParameter: lambda-handson-ozaki25-dev-helloQueryParameter
+layers:
+  None
+```
+
+- curlやREST Clientでアクセスしてみましょう
+
+```sh
+curl -X GET https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/dev/helloparams?name=ozaki25
+```
+
+- うまくいけば以下のような出力を得られるはずです
+
+```json
+{"message":"Your Name is ozaki25"}
+```
