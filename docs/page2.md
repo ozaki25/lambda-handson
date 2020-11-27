@@ -151,7 +151,7 @@ export const helloworld: APIGatewayProxyHandler = async () => {
 import type { AWS } from '@serverless/typescript';
 
 const serverlessConfiguration: AWS = {
-  service: 'lambda-handson-ozaki25',
+  service: 'lambda-handson-xxx',
   frameworkVersion: '2',
   custom: {
     webpack: {
@@ -196,7 +196,7 @@ module.exports = serverlessConfiguration;
 import type { AWS } from '@serverless/typescript';
 
 const serverlessConfiguration: AWS = {
-  service: 'lambda-handson-ozaki25',
+  service: 'lambda-handson-xxx',
   frameworkVersion: '2',
   custom: {
     webpack: {
