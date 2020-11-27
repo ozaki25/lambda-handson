@@ -163,7 +163,7 @@ layers:
 curl -X GET https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/dev/helloworld
 ```
 
-- うまくいけば2章と同じように以下のようなレスピンスが得られるはずです
+- うまくいけば2章と同じように以下のようなレスポンスが得られるはずです
 
 ```json
 {"message":"Hello Lambda!"}
