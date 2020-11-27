@@ -12,6 +12,7 @@
 - Lambda関数をローカルで実行できるようになる
 - Lambda関数をデプロイできるようになる
 - AWS上のLambda関数を実行できるようになる
+
 ## プロジェクトの作成
 
 - ServerlessFrameworkでプロジェクトを作成します
