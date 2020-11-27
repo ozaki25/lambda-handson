@@ -178,7 +178,7 @@ curl -X GET https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/dev/hell
 - [Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo/details?hl=ja-JP)や[Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=ja-jp)などがあります
 :::
 
-## (応用)API GatewayのURL設定
+## (応用)URLのパラメータの取得
 
 - 上の作業では特定のURLにアクセスすれば必ず同じ処理が実行されるパターンでした
 - 実際にアプリケーション開発をしていると`/users/1`などURLに値を埋め込みそれを元に処理をするケースがあります
