@@ -137,7 +137,7 @@ sls deploy
 - デプロイが完了したら出力を確認してみましょう
     - `endpoints`にどんなURLアクセスすればよいか表示されているはずです
 
-```
+```{12}
 Serverless: Stack update finished...
 Service Information
 service: lambda-handson-ozaki25
@@ -301,7 +301,7 @@ export const helloQueryParameter: APIGatewayProxyHandler = async event => {
 
 - 関数を作成したのでserverless.tsにも修正を加えます
 
-```ts{11-29}
+```ts{11-28}
 import type { AWS } from '@serverless/typescript';
 
 const serverlessConfiguration: AWS = {
