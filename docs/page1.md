@@ -57,12 +57,7 @@ npm i -g serverless
 ## AWSのAPIキーのセットアップ
 
 - AWSにアクセスするためのキー情報を登録します
-- [こちらの記事](https://qiita.com/ozaki25/items/034f7f8e8ad69adceea7)の`アクセスキーの発行`を参考にキーを発行してください
-
-:::tip
-11/30のハンズオンに参加する人はキー情報を展開するので自分で発行する必要はありません
-:::
-
+    - [こちらの記事](https://qiita.com/ozaki25/items/034f7f8e8ad69adceea7)の`アクセスキーの発行`を参考にキーを発行してください
 - 以下のコマンドでキー情報を端末に登録します
     - `AWS_ACCESS_KEY_ID`と`AWS_SECRET_ACCESS_KEY`は発行した値に置き換えて実行してください
 
