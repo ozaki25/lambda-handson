@@ -137,7 +137,7 @@ sls deploy
 - デプロイが完了したら出力を確認してみましょう
     - `endpoints`にどんなURLアクセスすればよいか表示されているはずです
 
-```
+```{12}
 Serverless: Stack update finished...
 Service Information
 service: lambda-handson-ozaki25
