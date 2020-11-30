@@ -70,6 +70,8 @@ npm i -g serverless
 sls config credentials --provider aws --key AWS_ACCESS_KEY_ID --secret AWS_SECRET_ACCESS_KEY
 ```
 
+- 登録に成功すると`~/.aws/credentials`にキー情報が追記されます
+    - `cat ~/.aws/credentials`するなどして確認しておきましょう
 - すでに登録済みの場合エラーが出ます
 - その場合は`~/.aws/credentials`のファイルを直接編集し`[default]`の部分を別の値に変えるなどしてから再実行してください
 
