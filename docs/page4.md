@@ -94,7 +94,7 @@ module.exports = serverlessConfiguration;
     - この値はLambda関数からのアクセスできますしserverless.ts内からもアクセスできます
 - 26~40行目Lambdaを実行するIAMにDynamoDBへのアクセス権を付与しています
     - LambdaからDynamoDBにアクセスするためこれが必要です
-- 42~68行目でTODOテーブルのテーブル定義をしています
+- 43~69行目でTODOテーブルのテーブル定義をしています
     - DynamoDBはスキーマレスなDBなのでパーティションキーのみ設定しています
 - 修正できたらデプロイしてみましょう
 
