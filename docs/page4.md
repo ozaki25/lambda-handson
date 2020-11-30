@@ -15,7 +15,7 @@
 
 - まずはserverless.tsにテーブル定義を追加します
 
-```ts{23-24,26-40,42-68}
+```ts{23-24,26-40,43-69}
 import type { AWS } from '@serverless/typescript';
 
 const serverlessConfiguration: AWS = {
@@ -57,6 +57,7 @@ const serverlessConfiguration: AWS = {
       },
     ],
   },
+  // 省略
   resources: {
     Resources: {
       Todo: {
