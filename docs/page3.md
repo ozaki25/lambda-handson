@@ -301,7 +301,7 @@ export const helloQueryParameter: APIGatewayProxyHandler = async event => {
 
 - 関数を作成したのでserverless.tsにも修正を加えます
 
-```ts{11-29}
+```ts{11-28}
 import type { AWS } from '@serverless/typescript';
 
 const serverlessConfiguration: AWS = {
